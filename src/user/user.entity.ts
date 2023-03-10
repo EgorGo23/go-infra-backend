@@ -7,4 +7,7 @@ export class User {
 
   @Column()
   public email: string;
+
+  @Column()
+  public name: string;
 }

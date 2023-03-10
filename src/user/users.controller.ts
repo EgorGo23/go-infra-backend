@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   ParseIntPipe,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { User } from './user.entity';
@@ -40,10 +42,14 @@ export class UsersController {
   }
 
   @Delete(':id')
-  remove(
-    @Body() createUserDto: CreateUserDto,
-    @Param('id', ParseIntPipe) id: number,
-  ): Promise<void> {
+  remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    if (id === 1) {
+      throw new HttpException(
+        'It is forbidden to remove the admin',
+        HttpStatus.METHOD_NOT_ALLOWED,
+      );
+    }
+
     return this.usersService.remove(id);
   }
 }
