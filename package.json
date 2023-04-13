@@ -11,7 +11,12 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main"
+    "start:prod": "node dist/main",
+    "lint:ts": "npx tsc",
+    "lint:js": "eslint src",
+    "prettier:check": "prettier src --check",
+    "prettier:fix": "prettier src --write",
+    "check": "npm run lint:ts & npm run lint:js & npm run prettier:check"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
