@@ -30,4 +30,6 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Echo
-        run: echo ${{ env.REGISTRY }}
+        run: |
+          echo ${{ env.REGISTRY }}
+          echo ${{ github.event.release.tag_name }}
