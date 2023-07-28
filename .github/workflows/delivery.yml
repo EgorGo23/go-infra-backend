@@ -25,4 +25,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: egorgo/${{ github.event.repository.name }}:${{ github.event.release.tag_name }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ github.event.release.tag_name }}
