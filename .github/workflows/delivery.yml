@@ -26,6 +26,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ github.event.release.tag_name }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-infra-backend:${{ github.event.release.tag_name }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
