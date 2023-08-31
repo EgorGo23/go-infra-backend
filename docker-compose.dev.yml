@@ -3,7 +3,8 @@ services:
   api:
     container_name: go-infra-api
     build:
-      dockerfile: ./Dockerfile
+      context: .
+      dockerfile: Dockerfile
       target: development
     env_file:
       - .env
