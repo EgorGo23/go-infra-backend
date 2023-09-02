@@ -1,20 +1,19 @@
 version: "3.8"
 services:
   api:
-    container_name: go-infra-api
     build:
       context: .
       dockerfile: Dockerfile
       target: development
+    command: npm run start:dev
     env_file:
       - .env
     volumes:
       - ".:/usr/src/app"
-    command: npm run start:dev
     depends_on:
       - postgres
-    expose:
-      - ${API_PORT}
+    ports:
+      - ${API_PORT}:${API_PORT}
   postgres:
     image: postgres:alpine
     restart: always
@@ -24,8 +23,6 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - ./pgdata:/var/lib/postgresql/data
-    ports:
-      - ${DATABASE_PORT}:${DATABASE_PORT}
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -34,10 +31,4 @@ services:
       PGADMIN_LISTEN_PORT: ${PGADMIN_PORT}
     depends_on:
       - postgres
-  nginx:
-    build: ./nginx
-    ports:
-      - ${NGINX_PORT}:${NGINX_PORT}
-    depends_on:
-      - api
-      - pgadmin
+
