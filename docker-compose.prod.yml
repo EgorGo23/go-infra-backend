@@ -26,4 +26,3 @@ services:
       - ${NGINX_PORT}:${NGINX_PORT}
     depends_on:
       - api
-      - pgadmin
