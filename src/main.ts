@@ -7,7 +7,10 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:4552'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  });
 
   const config = await app.get(ConfigService);
   const port = config.get<number>('API_PORT');
